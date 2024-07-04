@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p>Form 表单提交</p>
+<span>HTML 中的 <form> 元素可以用来提交用户输入的数据到后端服务。通过设置表单的 action 属性和 method 属性，可以将表单数据发送到后端服务端点。</span>
+<form action="/submit-form" method="post">
+    <input type="text" name="username" />
+    <input type="password" name="password" />
+    <button type="submit">Submit</button>
+</form>
+
+
+
+<p>iframe</p>
+<span>使用 <iframe> 元素可以在页面中嵌入另一个文档，这个文档可以是同域或者跨域的。通过设置 iframe 的 src 属性，可以加载并显示远程资源或者其他页面的内容。</span>
+<iframe src="/remote-content" width="100%" height="300px"></iframe>
+
+
+
+<p>WebSocket</p>
+<span>WebSocket 提供了浏览器与服务器之间全双工通信的能力，可以实时地传输数据，而不需要像 Ajax 那样进行轮询。</span>
+<script>
+    var socket = new WebSocket("ws://example.com/socket");
+
+    socket.onopen = function(event) {
+        console.log("WebSocket connection opened.");
+    };
+
+    socket.onmessage = function(event) {
+        console.log("Message received: " + event.data);
+    };
+
+    socket.onclose = function(event) {
+        console.log("WebSocket connection closed.");
+    };
+
+    function sendMessage(message) {
+        socket.send(message);
+    }
+</script>
+
+<p>Server-Sent Events (SSE)</p>
+<span>Server-Sent Events 允许服务器端单向推送数据到浏览器，而不需要浏览器发起请求。这在需要实时更新的应用中很有用。</span>
+<script>
+    var eventSource = new EventSource("/events");
+
+    eventSource.onmessage = function(event) {
+        console.log("Event received: " + event.data);
+    };
+
+    eventSource.onerror = function(event) {
+        console.error("EventSource error.");
+    };
+</script>
+
+<p>Web Storage</p>
+<span>HTML5 提供了本地存储（LocalStorage 和 SessionStorage）的功能，可以在客户端存储数据，并且不需要与服务器进行直接的通信</span>
+<script>
+    // 存储数据到 LocalStorage
+    localStorage.setItem("username", "John");
+
+    // 从 LocalStorage 中获取数据
+    var username = localStorage.getItem("username");
+    console.log("Username: " + username);
+</script>
+
+<p>Fetch API</p>
+<span>Fetch API 是用来进行网络请求和获取数据的现代 JavaScript API，替代了传统的 XMLHttpRequest。它提供了更强大和灵活的方式来处理网络请求</span>
+<script>
+    fetch('/api/data')
+        .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error fetching data:', error));
+</script>
+
+</body>
+</html>
